@@ -13,10 +13,12 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: AppTheme(selectedColorIndex: 0).getTheme(),
-      home: const Scaffold(
+      theme: AppTheme(selectedColorIndex: 5).getTheme(),
+      home:  Scaffold(
         body: Center(
-          child: Text('Hello World!'),
+          child: FilledButton(
+            onPressed: (){},
+             child: Text('Hello World!')),
         ),
       ),
     );

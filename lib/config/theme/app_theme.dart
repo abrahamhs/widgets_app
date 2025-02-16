@@ -25,7 +25,7 @@ class AppTheme {
    AppTheme({
     this.selectedColorIndex = 0
     }):assert(selectedColorIndex >= 0, 'selectedColorIndex must be greater than 0'),
-    assert(selectedColorIndex < colorList.length, 'selectedColorIndex must be less than ${colorList.length}');
+    assert(selectedColorIndex < colorList.length, 'selectedColorIndex must be less than ${colorList.length - 1}');
     ThemeData getTheme() => ThemeData(
       useMaterial3: true,
       colorSchemeSeed: colorList[selectedColorIndex],

@@ -40,38 +40,83 @@ class _ButtonsView extends StatelessWidget {
               onPressed: () {},
               child: const Text('Elevated Button'),
             ),
+
             ElevatedButton(
               onPressed: null,
               child: const Text('Elevated Button disabled'),
             ),
+
             ElevatedButton.icon(
               onPressed: () {},
               label: const Text('Elevated Button Icon'),
               icon: const Icon(Icons.alarm),
             ),
-            //const SizedBox(width: 8),
+            
             FilledButton(
               onPressed:(){},
-              child: const Text('Filled Button')),
+              child: const Text('Filled Button')
+            ),
+
             FilledButton.icon(
               onPressed:(){},
               icon: const Icon(Icons.backup_rounded),
-              label: const Text('Filled Button Icons')),
+              label: const Text('Filled Button Icons')
+              ),
+
             TextButton(
               onPressed: () {},
               child: const Text('Text Button'),
             ),
-            //const SizedBox(width: 8),
+
+            TextButton.icon(
+              onPressed: () {},
+              label: const Text('Text Button Icon'),
+              icon: const Icon(Icons.alternate_email_sharp),
+            ),
+            
             OutlinedButton(
               onPressed: () {},
               child: const Text('Outlined Button'),
             ),
-            //const SizedBox(width: 8),
+
+            OutlinedButton.icon(
+              onPressed: () {},
+              label: const Text('Outlined Button Icon'),
+              icon: const Icon(Icons.alarm),  
+            ),
+
+            const CustomButtons(),
+            
             IconButton(
               onPressed: () {},
               icon: const Icon(Icons.add),
             ),
+
           ],
+        ),
+      ),
+    );
+  }
+}
+// Creando un botón personalizado
+class CustomButtons extends StatelessWidget {
+  const CustomButtons({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+
+    final colors = Theme.of(context).colorScheme; 
+
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20), 
+      child: Material(
+        color: colors.primary,
+        child: InkWell(
+          onTap: () {},
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: const Text('CustomButtons', style: TextStyle(color: Colors.white),),
+          ),
         ),
       ),
     );

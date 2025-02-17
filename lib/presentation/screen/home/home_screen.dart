@@ -42,10 +42,11 @@ class _CustomListTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;                                     
     return ListTile(
       title: Text(menuItem.title),
       subtitle: Text(menuItem.subTitle),
-      leading: Icon(menuItem.icon),
+      leading: Icon(menuItem.icon, color: colors.primary),
       
     );
   }

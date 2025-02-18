@@ -44,8 +44,60 @@ class _CardsView extends StatelessWidget {
           ...cards.map((card) => _CardType1(card: card)),
           ...cards.map((card) => _CardType2(card: card)),
           ...cards.map((card) => _CardType3(card: card)),
+          ...cards.map((card) => _CardType4(card: card)),
 
         ],
+      ),
+    );
+  }
+}
+// Definición de la clase _CardType3 que extiende StatelessWidget
+class _CardType4 extends StatelessWidget {
+  const _CardType4({
+    required this.card,
+  });
+
+  final Map<String, dynamic> card;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Card(
+        clipBehavior: Clip.hardEdge,
+        // Elevación de la tarjeta
+        elevation: card['elevation'],
+        child: Stack(
+           children: [
+            // Imagen de fondo
+            Image.network('https://picsum.photos/id/${card['elevation'].toInt()}/600/350',
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: 250,),          
+            // Alineación del icono a la izquierda
+            Align(
+              alignment: Alignment.centerRight,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: colors.secondaryContainer.withOpacity(0.5),
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(10),
+                  ),),
+                
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
+                  child: IconButton(
+                    icon: const Icon(Icons.more_vert_outlined),
+                    onPressed: () {},
+                  ),
+                ),
+              ),
+            ),
+            
+          ],
+        ),
       ),
     );
   }
@@ -96,7 +148,6 @@ class _CardType3 extends StatelessWidget {
     );
   }
 }
-
 
 // Definición de la clase _CardType2 que extiende StatelessWidget
 class _CardType2 extends StatelessWidget {

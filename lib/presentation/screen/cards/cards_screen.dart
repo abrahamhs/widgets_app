@@ -47,34 +47,7 @@ class _CardsView extends StatelessWidget {
               final card = cards[index];
               return Padding(
                 padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
-                child: Card(
-                  // Elevación de la tarjeta
-                  elevation: card['elevation'],
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
-                          child: Text(card['label']),
-                        ),
-                      ),
-                      // Alineación del icono a la derecha
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
-                          child: IconButton(
-                            icon: const Icon(Icons.more_vert_outlined),
-                            onPressed: () {},
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                child: _CardType1(card: card),
               );
             },
           ),
@@ -83,3 +56,44 @@ class _CardsView extends StatelessWidget {
     );
   }
 }
+
+class _CardType1 extends StatelessWidget {
+  const _CardType1({
+    required this.card,
+  });
+
+  final Map<String, dynamic> card;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      // Elevación de la tarjeta
+      elevation: card['elevation'],
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
+              child: Text(card['label']),
+            ),
+          ),
+          // Alineación del icono a la derecha
+          Align(
+            alignment: Alignment.centerRight,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
+              child: IconButton(
+                icon: const Icon(Icons.more_vert_outlined),
+                onPressed: () {},
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+// Fin del snippet de código

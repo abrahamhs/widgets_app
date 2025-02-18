@@ -37,22 +37,112 @@ class _CardsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          // ListView.builder para construir una lista de tarjetas
-          child: ListView.builder(
-            itemCount: cards.length,
-            itemBuilder: (context, index) {
-              final card = cards[index];
-              return Padding(
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          // Iteración de la lista de tarjetas para mostrarlas en la pantalla
+          ...cards.map((card) => _CardType1(card: card)),
+          ...cards.map((card) => _CardType2(card: card)),
+          ...cards.map((card) => _CardType3(card: card)),
+
+        ],
+      ),
+    );
+  }
+}
+
+// Definición de la clase _CardType3 que extiende StatelessWidget
+class _CardType3 extends StatelessWidget {
+  const _CardType3({
+    required this.card,
+  });
+
+  final Map<String, dynamic> card;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Card(
+        color: colors.secondaryContainer,
+        // Elevación de la tarjeta
+        elevation: card['elevation'],
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Alineación del icono a la izquierda
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
                 padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
-                child: _CardType1(card: card),
-              );
-            },
-          ),
+                child: IconButton(
+                  icon: const Icon(Icons.more_vert_outlined),
+                  onPressed: () {},
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
+                child: Text(card['label']),
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
+    );
+  }
+}
+
+
+// Definición de la clase _CardType2 que extiende StatelessWidget
+class _CardType2 extends StatelessWidget {
+  const _CardType2({
+    required this.card,
+  });
+
+  final Map<String, dynamic> card;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Card(
+          shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          side: BorderSide(color: colors.outline), 
+        ),
+        // Elevación de la tarjeta
+        elevation: card['elevation'],
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Alineación del icono a la izquierda
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
+                child: IconButton(
+                  icon: const Icon(Icons.more_vert_outlined),
+                  onPressed: () {},
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
+                child: Text('${card['label']} - outline'),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -66,32 +156,35 @@ class _CardType1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      // Elevación de la tarjeta
-      elevation: card['elevation'],
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
-              child: Text(card['label']),
-            ),
-          ),
-          // Alineación del icono a la derecha
-          Align(
-            alignment: Alignment.centerRight,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
-              child: IconButton(
-                icon: const Icon(Icons.more_vert_outlined),
-                onPressed: () {},
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Card(
+        // Elevación de la tarjeta
+        elevation: card['elevation'],
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
+                child: Text(card['label']),
               ),
             ),
-          ),
-        ],
+            // Alineación del icono a la derecha
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
+                child: IconButton(
+                  icon: const Icon(Icons.more_vert_outlined),
+                  onPressed: () {},
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

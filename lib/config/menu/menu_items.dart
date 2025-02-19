@@ -30,10 +30,16 @@ const appMenuItems = <MenuItems>[
     icon: Icons.credit_card,
   ),
   MenuItems(
-    title: 'ProgressIndicator',
+    title: 'Progress Indicator',
     subTitle: 'Generales y controlados',
     link: '/progress_screen',
     icon: Icons.refresh_rounded,
+  ),
+  MenuItems(
+    title: 'SnackBar y Dialog',
+    subTitle: 'Indicadores en pantalla',
+    link: '/snackbar_screen',
+    icon: Icons.info_outline,
   ),
 
 

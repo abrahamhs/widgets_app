@@ -29,6 +29,12 @@ const appMenuItems = <MenuItems>[
     link: '/cards',
     icon: Icons.credit_card,
   ),
+  MenuItems(
+    title: 'ProgressIndicator',
+    subTitle: 'Generales y controlados',
+    link: '/progress_screen',
+    icon: Icons.refresh_rounded,
+  ),
 
 
 

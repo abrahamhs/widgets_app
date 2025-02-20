@@ -10,18 +10,26 @@ class AnimatedScreen extends StatefulWidget {
 }
 
 class _AnimatedScreenState extends State<AnimatedScreen> {
-  double _width = 50.0;
-  double _height = 50.0;
-  double _borderRadius = 10.0;
+  double _width = 150.0;
+  double _height = 150.0;
+  double _borderRadius = 20.0;
+  Color randomColor = Colors.blue;
 
   void changeShape() {
+    // crear random y evitar que el valor sea menos a 0
     final random = Random();
-   
-
-    setState(() {
-      _width =  random.nextDouble() * 400;
-      _height =  random.nextDouble() * 400;
-      _borderRadius = random.nextDouble() * 100;
+      
+    _width = _width <= 0.0 ? 120 : random.nextDouble() * 400;
+    _height =  _height <= 0.0 ? 120 : random.nextDouble() * 400;
+    _borderRadius = _borderRadius <= 0.0 ? 50 : random.nextDouble() * 100;
+    randomColor = Color.fromRGBO(
+        random.nextInt(256),
+        random.nextInt(256),
+        random.nextInt(256),
+        1,
+    );
+      setState(() {
+      
     });
   }
 
@@ -34,11 +42,11 @@ class _AnimatedScreenState extends State<AnimatedScreen> {
       body: Center(
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 400),
-          curve: Curves.easeOutCubic,
+          curve: Curves.easeInOut,
           width: _width,
           height: _height,
           decoration: BoxDecoration(
-            color: Colors.blue,
+            color: randomColor,
             borderRadius: BorderRadius.circular(_borderRadius),
           ),
           ),

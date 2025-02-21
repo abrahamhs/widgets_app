@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
 class SlideInfo{
@@ -26,9 +29,40 @@ final List<SlideInfo> slideList = [
   ),
 ];
 
-class AppTutorialScreen extends StatelessWidget {
+class AppTutorialScreen extends StatefulWidget {
   static const String routeName = 'app_tutorial_screen';
   const AppTutorialScreen({super.key});
+
+  @override
+  State<AppTutorialScreen> createState() => _AppTutorialScreenState();
+}
+
+class _AppTutorialScreenState extends State<AppTutorialScreen> {
+
+   final PageController pageviewController = PageController();
+   bool endReached = false;
+
+  @override
+  void initState() {
+    super.initState();
+  pageviewController.addListener(() {
+    final page = pageviewController.page ?? 0;
+    log('${(pageviewController.page ?? 0) + 1}');
+    if(!endReached && page >= (slideList.length - 1.5)){
+      setState(() {
+        endReached = true;
+      });
+    }
+
+  });
+    
+  }
+  @override
+  void dispose() {
+    
+    pageviewController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +71,7 @@ class AppTutorialScreen extends StatelessWidget {
       body: Stack(
         children: [
           PageView(
+            controller: pageviewController,
             physics: const BouncingScrollPhysics(),
             children: slideList.map((slideData) => _Slide(
               title: slideData.title,
@@ -45,9 +80,9 @@ class AppTutorialScreen extends StatelessWidget {
             )).toList(),
           ),
           Positioned(
-            bottom: 16,
-            left: 16,
-            right: 16,
+            top: 20,
+            right: 20,
+            width: 100,
             
           child: ElevatedButton(
               onPressed: () {
@@ -56,6 +91,22 @@ class AppTutorialScreen extends StatelessWidget {
               child: const Text('Salir'),
             ),
           ),
+          endReached ? Positioned(
+            bottom: 20,
+            right: 20,
+            //width: 100,
+            
+          child: FadeInRight(
+            from: 15,
+            delay: const Duration(seconds: 1),
+            child: FilledButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Comenzar'),
+              ),
+          ),
+          ): const SizedBox()
         ],
       ),
     );

@@ -60,6 +60,14 @@ const appMenuItems = <MenuItems>[
     link: '/app_tutorial_screen',
     icon: Icons.school,
   ),
+  MenuItems(
+    title: 'InfiniteScroll y Pull',
+    subTitle: 'Lista infinitas y pull',
+    link: '/infinite_scroll_screen',
+    icon: Icons.accessible_rounded,
+  ),
+  
+
 
 
 ];
